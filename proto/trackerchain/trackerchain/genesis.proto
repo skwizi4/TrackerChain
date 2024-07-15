@@ -1,0 +1,17 @@
+syntax = "proto3";
+package trackerchain.trackerchain;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "trackerchain/trackerchain/params.proto";
+
+option go_package = "github.com/Skwizi_4/TrackerChain/x/trackerchain/types";
+
+// GenesisState defines the trackerchain module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
