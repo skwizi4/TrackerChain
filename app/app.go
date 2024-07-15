@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	_ "cosmossdk.io/api/cosmos/tx/config/v1" // import for side-effects
+	_ "cosmossdk.io/api/cosmos/tx/config/v1" // import for side effects
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"
@@ -170,6 +170,7 @@ func getGovProposalHandlers() []govclient.ProposalHandler {
 }
 
 // AppConfig returns the default app config.
+
 func AppConfig() depinject.Config {
 	return depinject.Configs(
 		appConfig,
