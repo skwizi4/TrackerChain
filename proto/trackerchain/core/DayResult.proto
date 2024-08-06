@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option go_package = "github.com/Skwizi_4/TrackerChain/x/core/types";
+
+
+message UserResults {
+  string Creator = 1;
+  UserResult user_a = 2;
+  UserResult user_b = 3;
+  string winner = 4;
+  string timestamp = 5;
+}
+
+message UserResult {
+  repeated task completed_tasks = 1; // Завершенные задачи
+  repeated task incomplete_tasks = 2; // Не завершенные задачи
+}
+message task{
+  string Task_name = 1;
+  string Task_description = 2;
+}

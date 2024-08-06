@@ -1,0 +1,56 @@
+syntax = "proto3";
+package trackerchain.core;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "trackerchain/core/params.proto";
+import "trackerchain/core/DayResult.proto";
+
+option go_package = "github.com/Skwizi_4/TrackerChain/x/core/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/Skwizi_4/TrackerChain/core/params";
+  }
+  rpc GetDayliResult(MsgGetResult) returns (MsgGetResultResponse){
+    option (google.api.http).get = "/Skwizi_4/trackerchain/core/GetResult";
+  }
+  rpc GetDayliResultList(MsgGetResultList) returns (MsgGetResultListResponse){
+    option (google.api.http).get = "/Skwizi_4/trackerchain/core/GetResultList";
+  }
+
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+message MsgGetResult {
+  uint64 id = 1;
+}
+
+message MsgGetResultResponse {
+  string creator = 1;
+  UserResults body = 2;
+}
+
+message MsgGetResultList {
+  string creator = 1;
+
+}
+
+message MsgGetResultListResponse {
+  string creator = 1;
+  repeated UserResults body = 2;
+}
